@@ -11,9 +11,9 @@ Author URI: http://www.mightycall.com
 define( 'MIGHTYCALL_CONTACT_PAGE_UNIQUE_ID', 'mightycall-contact-page' );
 define( 'MIGHTYCALL_CONTACT_PAGE_DIR', WP_PLUGIN_DIR . '/' . MIGHTYCALL_CONTACT_PAGE_UNIQUE_ID );
 define( 'MIGHTYCALL_CONTACT_PAGE_SHORTCODE', 'MightyCallContactForm' );
-define( 'MIGHTYCALL_CONTACT_PAGE_SERVER_BASE', 'http://mightycallwebui.cloudapp.net' );
-define( 'MIGHTYCALL_CONTACT_PAGE_CDN_SERVER_BASE', 'http://evgeniistorage.blob.core.windows.net' );
-define( 'MIGHTYCALL_CONTACT_PAGE_REGISTER_URL', 'http://mightycallwebui.cloudapp.net/ContactQStore' );
+define( 'MIGHTYCALL_CONTACT_PAGE_SERVER_BASE', 'http://panel.mightycall.com' );
+define( 'MIGHTYCALL_CONTACT_PAGE_CDN_SERVER_BASE', 'https://mightycallstorage.blob.core.windows.net' );
+define( 'MIGHTYCALL_CONTACT_PAGE_REGISTER_URL', 'https://panel.mightycall.com/reactstore' );
 
 require_once( 'class-mightycall-contact-page.php' );
 require_once( 'class-mightycall-contact-page-logger.php' );
