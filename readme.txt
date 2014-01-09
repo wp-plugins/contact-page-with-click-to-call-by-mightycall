@@ -7,7 +7,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-*The MightyCall Contact Page with click-to-call, web request and call-me-back features helps you create the best ‘contact us’ experience.*
+The MightyCall Contact Page with click-to-call, web request and call-me-back features helps you create the best ‘contact us’ experience.
 
 == Description ==
 
