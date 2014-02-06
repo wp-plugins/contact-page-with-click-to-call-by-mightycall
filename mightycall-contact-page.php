@@ -3,17 +3,18 @@
 Plugin Name: Contact Page with Click to Call by MightyCall
 Plugin URI: http://www.mightycall.com
 Description: Configurable all-in-one contact page including company address, clickable phone numbers with click to call, business hours, location map & directions, vCard, social media links and a "contact us" form including call me back and email response options. 
-Version: 1.0
+Version: 1.1
 Author: Infratel Inc.
 Author URI: http://www.mightycall.com
 */
 
-define( 'MIGHTYCALL_CONTACT_PAGE_UNIQUE_ID', 'mightycall-contact-page' );
+define( 'MIGHTYCALL_CONTACT_PAGE_UNIQUE_ID', 'contact-page-with-click-to-call-by-mightycall' );
 define( 'MIGHTYCALL_CONTACT_PAGE_DIR', WP_PLUGIN_DIR . '/' . MIGHTYCALL_CONTACT_PAGE_UNIQUE_ID );
 define( 'MIGHTYCALL_CONTACT_PAGE_SHORTCODE', 'MightyCallContactForm' );
 define( 'MIGHTYCALL_CONTACT_PAGE_SERVER_BASE', 'http://panel.mightycall.com' );
 define( 'MIGHTYCALL_CONTACT_PAGE_CDN_SERVER_BASE', 'https://mightycallstorage.blob.core.windows.net' );
 define( 'MIGHTYCALL_CONTACT_PAGE_REGISTER_URL', 'http://www.mightycall.com/signup.html' );
+
 
 require_once( 'class-mightycall-contact-page.php' );
 require_once( 'class-mightycall-contact-page-logger.php' );
