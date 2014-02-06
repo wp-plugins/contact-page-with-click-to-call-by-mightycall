@@ -231,6 +231,13 @@ class MightyCall_Contact_Page_Settings_Manager {
 				.mightycall-contact-page-settings {
 					margin-right: auto;
 				}
+				
+				.mightycall-contact-page-error {
+					height: 1em;
+					margin-top: 0;
+					margin-bottom:  0;
+					color: red;
+				}
 			</style>
 			<div class="wrap">
 				<div class="mightycall-contact-page-logo"></div>&nbsp;
@@ -266,7 +273,7 @@ class MightyCall_Contact_Page_Settings_Manager {
 											<input id="ContactId" type="text" name="ContactId" style="width:25em" value="<?php echo $options->get_contact_id(); ?>"/>&nbsp;
 											<i class="mightycall-contact-page-id-status-icon"></i>
 										</div>
-										<br>
+										
 									</td>
 									<td style="text-align:center;">
 										<div>
@@ -275,9 +282,16 @@ class MightyCall_Contact_Page_Settings_Manager {
 									</td>
 								</tr>
 								<tr>
+									<td colspan="3">
+										<div>
+											<p id="MightyCallContactIdError" class="mightycall-contact-page-error" ></p>
+										</div>
+									</td>
+								</tr>
+								<tr>
 									<td colspan="4">
 										<div>
-											<h3>How do I get a MightyCall ID?</h3>
+											<h3 style=" margin-top: 0.5em; ">How do I get a MightyCall ID?</h3>
 											<hr>
 										</div>
 									</td>
@@ -352,31 +366,41 @@ class MightyCall_Contact_Page_Settings_Manager {
 				<p style="text-align:left;padding-left:10px;"><input type="button" id="mightycall-contact-page-close-popup" class="button button-primary" value="Close" /></p>
 			</div>
 			<script type="text/javascript">
-				function mightyCallContactShowError() {
+				function mightyCallContactShowError(errorMessage) {
 					jQuery('#MightyCallContactIdLink').show();
 					jQuery('.mightycall-contact-page-id-status-icon').removeClass('upd');
+					
+					if (typeof errorMessage !== 'undefined')
+					{
+						jQuery('#MightyCallContactIdError').text(errorMessage);
+					}
+					else
+					{
+						jQuery('#MightyCallContactIdError').text("");
+					}
 				}
 				
 				function mightyCallContactShowSuccess()	{
 					jQuery('#MightyCallContactIdLink').hide();
 					jQuery('.mightycall-contact-page-id-status-icon').addClass('upd');
+					jQuery('#MightyCallContactIdError').text("");					
 				}
 				
 				function checkMightyCallId()
-				{
+				{				
 					var id = jQuery('#ContactId').val();
 					var tid = '<?php echo $tenant_id; ?>';
-					if (!id)
+					if (typeof id === 'undefined' || !id)
 					{
 						mightyCallContactShowError();
 					}
 					else
 					{
 						if (id.length < 24 || id.length > 25) {
-							mightyCallContactShowError();
+							mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_wrong_id; ?>");
 						} else {
 							if ('' == tid)	{
-								mightyCallContactShowError();
+								mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_wrong_id; ?>");
 							}
 							jQuery.ajax({
 								type: 'POST',
@@ -385,14 +409,14 @@ class MightyCall_Contact_Page_Settings_Manager {
 								dataType: 'json',
 								timeout: 10000,
 								success: function (data) {
-									if (typeof data.result === 'undefined' || data.result != 200) {
-										mightyCallContactShowError();
+									if (typeof data.result === 'undefined' || data.result != 200) {																			
+										mightyCallContactShowError(data.message);
 									} else {
 										mightyCallContactShowSuccess();
 									}
 								},
 								error: function (request, status, error) {
-									mightyCallContactShowError();
+									mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_conn_failure; ?>");
 								}
 							});
 						}

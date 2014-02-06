@@ -3,6 +3,10 @@
 class MightyCall_Contact_Page_Plugin {
 
 	private static $instance;
+	
+	const error_conn_failure = "We can't connect to the MightyCall to verify your ID. Please, contact support.";
+	const error_wrong_id = "The ID you have provided is incorrect. Please, check your MightyCall account.";
+
 
 	public static function get_instance() {
 		if ( null == self::$instance ) {
@@ -74,7 +78,8 @@ class MightyCall_Contact_Page_Plugin {
 			if ( is_wp_error( $resp ) || 200 != wp_remote_retrieve_response_code( $resp ) ) {
 				echo json_encode( array(
 					'result' => 400,
-					'message' => 'mightycall connection failure'
+					'message' => 'mightycall connection failure',
+					'error' => $resp->get_error_message()
 					));
 			} else {
 				echo wp_remote_retrieve_body( $resp );
@@ -98,7 +103,8 @@ class MightyCall_Contact_Page_Plugin {
 			if ( is_wp_error( $resp ) || 200 != wp_remote_retrieve_response_code( $resp ) ) {
 				echo json_encode( array(
 					'result' => 400,
-					'message' => 'mightycall connection failure'
+					'message' => MightyCall_Contact_Page_Plugin::error_conn_failure,
+					'error' => $resp->get_error_message()
 					));
 			} else {
 				$options = MightyCall_Contact_Page_Options::get_instance();
@@ -115,7 +121,7 @@ class MightyCall_Contact_Page_Plugin {
 				} else {
 					echo json_encode( array(
 					'result' => 400,
-					'message' => 'wrong wordpress id'
+					'message' => MightyCall_Contact_Page_Plugin::error_wrong_id
 					));
 				}
 			}
