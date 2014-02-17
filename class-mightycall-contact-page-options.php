@@ -119,6 +119,7 @@ class MightyCall_Contact_Page_Options {
 	public function set_cc_widget_code( $value ) {
 		return $this->update_option( self::$name_cc_widget_code, $value );
 	}
+
 	//////////////////////////////////////////////////////////
 	// Internal methods
 	//////////////////////////////////////////////////////////
