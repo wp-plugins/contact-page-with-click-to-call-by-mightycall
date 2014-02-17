@@ -28,6 +28,7 @@ class MightyCall_Contact_Page_Widget extends WP_Widget {
 			$nonce = wp_create_nonce( 'mcnonce' );
 			$ajax_url = admin_url( 'admin-ajax.php?action=mightycall_contact_page&nonce=' . $nonce );
 			echo '<div id="InfratelContactWidget" data-tenantid="' . $tenant_id . '" data-url="' . $ajax_url . '"></div>';
+			wp_enqueue_script( 'mightycall-tenantid.js', MIGHTYCALL_CONTACT_PAGE_CDN_SERVER_BASE . '/cqjs/' . $tenant_id . '.js', array('jquery') );
 			wp_enqueue_script( 'mightycall-wordpress.js', MIGHTYCALL_CONTACT_PAGE_CDN_SERVER_BASE . '/cqjs/wordpress.js', array('jquery') );
 		}
 		echo $args['after_widget'];
