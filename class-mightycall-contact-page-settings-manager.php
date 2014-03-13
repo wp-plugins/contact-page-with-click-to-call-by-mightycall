@@ -58,6 +58,7 @@ class MightyCall_Contact_Page_Settings_Manager {
 		$main_widget_code = '';
 		$themed_widget_code = '';
 		$cc_widget_code = '';
+		$cc_mobile_widget_code = '';
 
 		if ( isset( $contact_id ) && trim( $contact_id ) != '') {
 			$tenant_id = $this->retrieve_tenant_id( $contact_id );
@@ -69,14 +70,16 @@ class MightyCall_Contact_Page_Settings_Manager {
 			if ( isset( $codes ) ) {
 				$main_widget_code = $codes->{'widget'};
 				$themed_widget_code = $codes->{'themedWidget'};
-				$cc_widget_code = $codes->{'sidebarClickConnect'};			
+				$cc_widget_code = $codes->{'sidebarClickConnect'};
+				$cc_mobile_widget_code = $codes->{'sidebarMobileClickConnect'};
 			}
 		}
 		
 		$options->set_tenant_id( $tenant_id );
 		$options->set_main_widget_code( $main_widget_code );
 		$options->set_themed_widget_code( $themed_widget_code );
-		$options->set_cc_widget_code( $cc_widget_code );		
+		$options->set_cc_widget_code( $cc_widget_code );
+		$options->set_cc_mobile_widget_code( $cc_mobile_widget_code );
 	}
 
 	private function retrieve_tenant_id( $contact_id ) {
@@ -85,7 +88,8 @@ class MightyCall_Contact_Page_Settings_Manager {
 			return '';
 		} else {
 			$result = json_decode( wp_remote_retrieve_body( $resp ) );
-			if ( json_last_error() === JSON_ERROR_NONE ) {
+			//if ( json_last_error() === JSON_ERROR_NONE ) {
+			if ( is_object($result) ) {
 				$tenant_id = $result->{'tenantId'};
 				return $tenant_id;
 			}
@@ -98,8 +102,9 @@ class MightyCall_Contact_Page_Settings_Manager {
 		if ( is_wp_error( $resp ) || 200 != wp_remote_retrieve_response_code( $resp ) ) {
 			return null;
 		} else {
-			$result = json_decode( wp_remote_retrieve_body( $resp ) );
-			if ( json_last_error() === JSON_ERROR_NONE ) {
+			$result = json_decode( wp_remote_retrieve_body( $resp ) );			
+			//if ( json_last_error() === JSON_ERROR_NONE ) {
+			if ( is_object($result) ) {			
 				return $result;
 			}
 			return null;

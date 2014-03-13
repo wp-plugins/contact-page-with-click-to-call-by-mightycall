@@ -10,10 +10,11 @@ class MightyCall_Contact_Page_Options {
 	
 	// Internal plugin options
 	private static $name_page_id = 'PageId';
-	private static $name_tenant_id = 'TenantId';	
+	private static $name_tenant_id = 'TenantId';
 	private static $name_main_widget_code = 'MainWidgetCode';
 	private static $name_themed_widget_code = 'ThemedWidgetCode';
-	private static $name_cc_widget_code = 'CCWidgetCode';	
+	private static $name_cc_widget_code = 'CCWidgetCode';
+	private static $name_cc_mobile_widget_code = 'CCMobileWidgetCode';
 
 	private static $instance;
 
@@ -36,7 +37,8 @@ class MightyCall_Contact_Page_Options {
 		$this->add_option( self::$name_tenant_id, '' );
 		$this->add_option( self::$name_main_widget_code, '' );
 		$this->add_option( self::$name_themed_widget_code, '' );
-		$this->add_option( self::$name_cc_widget_code, '' );	
+		$this->add_option( self::$name_cc_widget_code, '' );
+		$this->add_option( self::$name_cc_mobile_widget_code, '' );
 		$this->log( 'successfully created options' );
 	}
 
@@ -50,6 +52,7 @@ class MightyCall_Contact_Page_Options {
 		$this->delete_option( self::$name_main_widget_code );
 		$this->delete_option( self::$name_themed_widget_code );
 		$this->delete_option( self::$name_cc_widget_code );
+		$this->delete_option( self::$name_cc_mobile_widget_code );
 		$this->log( 'successfully deleted options' );
 	}
 
@@ -118,6 +121,14 @@ class MightyCall_Contact_Page_Options {
 
 	public function set_cc_widget_code( $value ) {
 		return $this->update_option( self::$name_cc_widget_code, $value );
+	}
+
+	public function get_cc_mobile_widget_code() {
+		return $this->get_option( self::$name_cc_mobile_widget_code );
+	}
+
+	public function set_cc_mobile_widget_code( $value ) {
+		return $this->update_option( self::$name_cc_mobile_widget_code, $value );
 	}
 
 	//////////////////////////////////////////////////////////

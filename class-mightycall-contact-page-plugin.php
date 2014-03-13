@@ -111,8 +111,9 @@ class MightyCall_Contact_Page_Plugin {
 				$body = wp_remote_retrieve_body( $resp );
 				$result = json_decode( $body );
 				$tenant_id = '';
-
-				if ( json_last_error() === JSON_ERROR_NONE ) {
+				
+				//if ( json_last_error() === JSON_ERROR_NONE ) {   			
+				if ( is_object($result) ) {
 					$tenant_id = $result->{'tenantId'};
 				}
 

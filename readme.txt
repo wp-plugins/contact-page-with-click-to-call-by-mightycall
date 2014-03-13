@@ -3,7 +3,7 @@ Contributors: mightycall.com
 Tags: address, contact, contact form, click to call, click2call, profile, Google map, directions, vcard, request
 Requires at least: 3.6.1
 Tested up to: 3.8.1
-Stable tag: 1.2
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,12 @@ For more information visit the Plug-in page for the MightyCall Contact Page or e
 3. Contact Request Form
 
 == Changelog ==
+= 1.4 =
+* Click-to-call button now initiates a call through your native smartphone dialer
+
+= 1.3 =
+* BugFix: applied json_last_error() workaround
+
 = 1.2 =
 * Sidebar widget localization
 
