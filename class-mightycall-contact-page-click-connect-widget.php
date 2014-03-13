@@ -12,10 +12,15 @@ class MightyCall_Contact_Page_Click_Connect_Widget extends WP_Widget {
 
 	public function widget( $args, $instance ) {
 		$options = MightyCall_Contact_Page_Options::get_instance();
-		$tenant_id = $options->get_tenant_id();
 		echo $args['before_widget'];
 
-		$snippet = $options->get_cc_widget_code();
+		if(preg_match('/Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i', $_SERVER["HTTP_USER_AGENT"])) {
+			$snippet = $options->get_cc_mobile_widget_code();
+		}
+		else {
+			$snippet = $options->get_cc_widget_code();
+		}
+		
 		if ( !isset( $snippet ) || '' == trim( $snippet ) ) {
 			echo "<span>Can't render MightyCall ClickConnect Widget. Please check MightyCall Contact plugin settings</span>";
 		} else {
@@ -24,7 +29,7 @@ class MightyCall_Contact_Page_Click_Connect_Widget extends WP_Widget {
 
 		echo $args['after_widget'];
 	}
-
+	
 	public function form( $instance ) {
 	}
 
