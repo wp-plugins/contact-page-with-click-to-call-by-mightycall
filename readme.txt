@@ -2,7 +2,7 @@
 Contributors: mightycall.com
 Tags: address, contact, contact form, click to call, click2call, profile, Google map, directions, vcard, request
 Requires at least: 3.6.1
-Tested up to: 3.8.1
+Tested up to: 3.9.1
 Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
