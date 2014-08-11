@@ -17,7 +17,7 @@ class MightyCall_Contact_Page_Settings_Manager {
 
 	public function add_settings_to_admin_menu() {
 		add_menu_page( 'MightyCall Contact Page', 'MightyCall', 'manage_options',
-		get_class( $this ), array( &$this, 'settings_page' ), plugins_url( MIGHTYCALL_CONTACT_PAGE_UNIQUE_ID . '/images/menu_icon.png' ) );
+		get_class( $this ), array( &$this, 'settings_page' ), plugins_url( 'images/menu_icon.png' , __FILE__ ) );
 	}
 
 	public function settings_page() {
@@ -131,7 +131,8 @@ class MightyCall_Contact_Page_Settings_Manager {
 				
 				.mightycall-contact-page-headline {
 					display: inline-block !important;
-					margin-bottom: 2px !important;
+					margin-bottom: 13px !important;
+					margin-left: 10px !important;
 					font-size: 22px !important;
 				}
 				
@@ -401,30 +402,26 @@ class MightyCall_Contact_Page_Settings_Manager {
 					}
 					else
 					{
-						if (id.length < 24 || id.length > 25) {
+						if ('' == tid)	{
 							mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_wrong_id; ?>");
-						} else {
-							if ('' == tid)	{
-								mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_wrong_id; ?>");
-							}
-							jQuery.ajax({
-								type: 'POST',
-								url: '<?php echo $ajax_url; ?>',
-								data: 'wordpressId=' + id,
-								dataType: 'json',
-								timeout: 10000,
-								success: function (data) {
-									if (typeof data.result === 'undefined' || data.result != 200) {																			
-										mightyCallContactShowError(data.message);
-									} else {
-										mightyCallContactShowSuccess();
-									}
-								},
-								error: function (request, status, error) {
-									mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_conn_failure; ?>");
-								}
-							});
 						}
+						jQuery.ajax({
+							type: 'POST',
+							url: '<?php echo $ajax_url; ?>',
+							data: 'wordpressId=' + id,
+							dataType: 'json',
+							timeout: 10000,
+							success: function (data) {
+								if (typeof data.result === 'undefined' || data.result != 200) {																			
+									mightyCallContactShowError(data.message);
+								} else {
+									mightyCallContactShowSuccess();
+								}
+							},
+							error: function (request, status, error) {
+								mightyCallContactShowError("<?php echo MightyCall_Contact_Page_Plugin::error_conn_failure; ?>");
+							}
+						});						
 					}
 				}
 
@@ -437,7 +434,19 @@ class MightyCall_Contact_Page_Settings_Manager {
 						jQuery('.mightycall-contact-page-shortcode-popup').hide();
 					});
 					
-					jQuery('#ContactId').keyup(checkMightyCallId).change(checkMightyCallId);
+					var delay = (function(){
+					  var timer = 0;
+					  return function(callback, ms){
+						clearTimeout (timer);
+						timer = setTimeout(callback, ms);
+					  };
+					})();
+
+					jQuery('#ContactId').keyup(function() {
+											 delay(function(){
+												checkMightyCallId();
+											}, 500 );
+										}).change(checkMightyCallId);
 					checkMightyCallId();
 				});
 			</script>
