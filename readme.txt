@@ -2,8 +2,8 @@
 Contributors: mightycall.com
 Tags: address, contact, contact form, click to call, click2call, profile, Google map, directions, vcard, request
 Requires at least: 3.6.1
-Tested up to: 4.1
-Stable tag: 1.6
+Tested up to: 4.2.2
+Stable tag: 1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -99,6 +99,9 @@ For more information visit the Plug-in page for the MightyCall Contact Page or e
 3. Contact Request Form
 
 == Changelog ==
+= 1.7 =
+* Bug fix
+
 = 1.6 =
 * WordPress Id field should accept email also
 * Bug fix
