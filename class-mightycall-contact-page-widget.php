@@ -13,6 +13,7 @@ class MightyCall_Contact_Page_Widget extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
+		ob_clean();
 		$options = MightyCall_Contact_Page_Options::get_instance();
 		$tenant_id = $options->get_tenant_id();
 

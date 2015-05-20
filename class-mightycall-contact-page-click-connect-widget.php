@@ -11,6 +11,7 @@ class MightyCall_Contact_Page_Click_Connect_Widget extends WP_Widget {
 	}
 
 	public function widget( $args, $instance ) {
+		ob_clean();
 		$options = MightyCall_Contact_Page_Options::get_instance();
 		echo $args['before_widget'];
 

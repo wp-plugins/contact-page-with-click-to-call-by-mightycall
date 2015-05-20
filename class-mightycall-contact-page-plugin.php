@@ -65,6 +65,7 @@ class MightyCall_Contact_Page_Plugin {
 
     //this will perform post to mightycall to post the form data
     public function submit_form_callback() {
+		ob_clean();
 		header( 'Content-Type: application/json' );
 		$nonce = $_GET['nonce'];
         if ( !wp_verify_nonce( $nonce, 'mcnonce' ) ) {
@@ -90,6 +91,7 @@ class MightyCall_Contact_Page_Plugin {
     }
 
 	public function check_id_callback() {
+		ob_clean();
 		header( 'Content-Type: application/json' );
 		$nonce = $_GET['nonce'];
         if ( !wp_verify_nonce( $nonce, 'mcnonce2' ) ) {
