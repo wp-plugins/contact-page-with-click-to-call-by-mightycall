@@ -3,7 +3,7 @@
 Plugin Name: Contact Page with Click to Call by MightyCall
 Plugin URI: http://www.mightycall.com
 Description: Configurable all-in-one contact page including company address, clickable phone numbers with click to call, business hours, location map & directions, vCard, social media links and a "contact us" form including call me back and email response options. 
-Version: 1.7
+Version: 1.8
 Author: Infratel Inc.
 Author URI: http://www.mightycall.com
 */
